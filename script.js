@@ -1,32 +1,31 @@
-"use strict";
-function calculateTotal() {
-  // Get input values
-  let hours = parseFloat(document.getElementById("hours").value) || 0;
-  let hourlyRate = 16; // Fixed hourly rate
+document.addEventListener("DOMContentLoaded", () => {
+  // Load Navbar
+  const navbarPlaceholder = document.getElementById("navbar-placeholder");
+  if (navbarPlaceholder) {
+    fetch("navbar.html")
+      .then((res) => res.text())
+      .then((html) => {
+        navbarPlaceholder.innerHTML = html;
 
-  // Call the calculateProjectRate function
-  let total = calculateProjectRate(hours, hourlyRate);
+        // Highlight active link
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+          }
+        });
+      })
+      .catch((err) => console.error("Error loading navbar:", err));
+  }
 
-  // Display total
-  document.getElementById("total").value = total.toFixed(2);
-}
-
-// Function to calculate project rate
-function calculateProjectRate(hours, hourlyRate) {
-  return hours * hourlyRate;
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const carousel = new bootstrap.Carousel(
-    document.querySelector(".slideshow-container"),
-    {
-      interval: 5000, // interval in milliseconds (5 second interval)
-      pause: false, // Disable pausing on hover
-      wrap: true, // Enable looping of the slideshow
-    }
-  );
+  // Load Footer
+  const footerPlaceholder = document.getElementById("footer-placeholder");
+  if (footerPlaceholder) {
+    fetch("footer.html")
+      .then((res) => res.text())
+      .then((html) => {
+        footerPlaceholder.innerHTML = html;
+      })
+      .catch((err) => console.error("Error loading footer:", err));
+  }
 });
-
-const cursorRounded = document.querySelector(".rounded");
-const cursorPointed = document.querySelector(".pointed");
-// cursor

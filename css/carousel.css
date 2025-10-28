@@ -1,0 +1,127 @@
+/* =====================================================
+   CAROUSEL STYLES — Ace Chianni Portfolio
+   ===================================================== */
+
+/* Carousel container */
+.carousel {
+  max-width: 900px;
+  margin: 3rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Carousel images */
+.carousel img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+/* Caption text (glass effect background) */
+.carousel-caption {
+  background: rgba(90, 123, 191, 0.45); /* brand blue glass */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-light);
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s ease-in-out, transform 0.4s ease;
+}
+
+.carousel-caption:hover {
+  background: rgba(90, 123, 191, 0.55);
+  transform: scale(1.02);
+}
+
+.carousel-caption h5 {
+  font-family: 'Caveat', cursive;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-caption p {
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #f8f9ff;
+}
+
+/* Smooth transitions between slides */
+.carousel-item {
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+/* Navigation controls (arrows) */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%) brightness(95%);
+}
+
+/* =====================================================
+   PAUSE / PLAY BUTTONS
+   ===================================================== */
+.carousel-controls {
+  text-align: center;
+}
+
+#pauseCarousel,
+#playCarousel {
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border: 2px solid #5A7BBF;
+  padding: 0.35rem 0.9rem; /* smaller padding */
+  border-radius: 6px;
+  margin: 0 0.4rem;
+  font-size: 0.85rem; /* reduced font size */
+  transition: all 0.3s ease;
+}
+
+/* Default states */
+#pauseCarousel {
+  background-color: #ffffff;
+  color: #5A7BBF;
+}
+
+#playCarousel {
+  background-color: #5A7BBF;
+  color: #ffffff;
+}
+
+/* Active states */
+#pauseCarousel.active,
+#pauseCarousel:focus {
+  background-color: #5A7BBF;
+  color: #ffffff;
+  box-shadow: 0 0 6px rgba(90, 123, 191, 0.4);
+}
+
+#playCarousel.active,
+#playCarousel:focus {
+  background-color: #ffffff;
+  color: #5A7BBF;
+  box-shadow: 0 0 6px rgba(90, 123, 191, 0.4);
+}
+
+/* Hover feedback */
+#pauseCarousel:hover,
+#playCarousel:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .carousel img {
+    height: 320px;
+  }
+
+  .carousel-caption {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+    background: rgba(90, 123, 191, 0.6); /* less transparent for smaller screens */
+  }
+}

@@ -1,200 +1,137 @@
-<!-- about.html -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Journey</title>
+    <title>The Journey | Ace Chianni</title>
+
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat">
 
+    <!-- Fonts & Styles -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;400;600&display=swap"
+    />
+    <link rel="stylesheet" href="css/colors.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/timeline.css" />
   </head>
+
   <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand-lg bs-info">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">ArtistAnnii</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#ArtistAnnii"
-          aria-controls="ArtistAnnii"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="ArtistAnnii">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="content.html">My Works</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-          </form>
-        </div>
-      </div>
-    </nav>
+    <!-- NAVBAR PLACEHOLDER -->
+    <div id="navbar-placeholder"></div>
 
-<h1> HER(story)</h1>
-<main>
-<section>
-    <div class="timeline">
-    <div class="timeline-line"></div>
-    <h2>A Walk Through Time</h2>
-    <!-- Timeline Item 1 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">March 2020</div>
-        <div class="timeline-title">Pandemic Began</div>
-        <div class="timeline-description">Lost my first post-grad job working as the Executive Administrative Assistant for a counseling office for 3 years. This moment allowed me to work on changing trajectories professionally.</div>
-    </div>
+    <!-- PAGE TITLE -->
+    <header class="text-center mt-4">
+      <h1>HER(story)</h1>
+      <p class="lead">A creative journey through growth, resilience, and rediscovery</p>
+    </header>
 
-                <!-- Timeline Item 2 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">October 2020</div>
-        <div class="timeline-title">Certified</div>
-        <div class="timeline-description">Thanks to a program in the city, New Orleans Video Access Center(NOVAC), I was able to take a workforce training and recieve a certification in Adobe Photoshop.</div>
-    </div>
-
-                <!-- Timeline Item 3 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">October 2021</div>
-        <div class="timeline-title">A Therapist?!</div>
-        <div class="timeline-description">I started a job working as an ABA therapist in schools, home, and clinic settings while re-evaluating what I want to do as a career.</div>
-    </div>
-
-     <!-- Timeline Item 4 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">October 2021</div>
-        <div class="timeline-title">In The Bakground</div>
-        <div class="timeline-description">I began taking random gigs working as an extra in some major productions being filmed around the city.</div>
-    </div>
-
-    <!-- Timeline Item 5 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">April 2022</div>
-        <div class="timeline-title">On Set</div>
-        <div class="timeline-description">I got my first internship as a PA on a major production</div>
-    </div>
-
-    <!-- Timeline Item 6 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">December 2022</div>
-        <div class="timeline-title">Training Arc</div>
-        <div class="timeline-description">During this time, I took several trainings through NOVAC in both art department and accounting.</div>
-    </div>
-
-    <!-- Timeline Item 7 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">February 2023</div>
-        <div class="timeline-title">You're Hired!</div>
-        <div class="timeline-description">My first job as an "artist", working as a graphic designer for The UPS store.</div>
-    </div>
-
-    <!-- Timeline Item 8 -->  
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point"></div>
-        <div class="timeline-date">July 2023</div>
-        <div class="timeline-title">Scratching & Surviving</div>
-        <div class="timeline-description">Began working as a freelance graphic artist, creating logos and merch for small businesses amongst my friends and family.</div>
-    </div>
-
-    <!-- Timeline Item 9 -->
-    <div class="timeline-item flex-column mb-1">
-        <div class="timeline-point style=top: 99%;"></div>
-        <div class="timeline-date">Present</div>
-        <div class="timeline-title">When I Grow Up</div>
-        <div class="timeline-description">Finally getting more training and experience in the fields I want to get into, in order to build multiple streams of income using my creativity.</div>
-    </div>
+    <main class="d-flex flex-wrap justify-content-center gap-4 p-4">
+      <!-- TIMELINE SECTION -->
+      <section id="timeline-section" class="fade-section">
+        <h2 class="text-center mb-4">A Walk Through Time</h2>
+        <div class="timeline position-relative">
+          <div class="timeline-item">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">March 2020</div>
+              <h5 class="timeline-title">Pandemic Began</h5>
+              <p class="timeline-description">
+                Lost my first post-grad job as an Executive Assistant at a counseling office.
+                This challenge became the spark to reimagine my creative path.
+              </p>
             </div>
-        </div>
-    </div>
-</div>
-</section>
+          </div>
 
-<aside>
-<div class="table-container mt-5">
-    <h3 class="text-center mb-4">My Strengths & Capabilities</h3>
-    
-    <table>
-        <thead>
+          <div class="timeline-item">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">October 2020</div>
+              <h5 class="timeline-title">Certified</h5>
+              <p class="timeline-description">
+                Earned an Adobe Photoshop certification through NOVAC, deepening my passion for visual storytelling.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2021 – 2022</div>
+              <h5 class="timeline-title">The Film Chapter</h5>
+              <p class="timeline-description">
+                Worked as a Production Assistant in art and costume departments for major productions,
+                merging my love of art and storytelling on set.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2023</div>
+              <h5 class="timeline-title">Freelance Era</h5>
+              <p class="timeline-description">
+                Designed logos, websites, and content for small businesses — transforming creativity into independence.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-point"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">Present</div>
+              <h5 class="timeline-title">When I Grow Up</h5>
+              <p class="timeline-description">
+                Growing as a UX/UI Designer — blending psychology, art, and technology
+                to craft experiences that feel human and inspired.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <aside id="skills-section" class="fade-section">
+        <h3 class="text-center mb-3">My Strengths & Capabilities</h3>
+        <table class="table table-hover">
+          <thead>
             <tr>
-                <th scope="col">Skill</th>
-                <th scope="col">Proficiency Level</th>
+              <th>Skill</th>
+              <th>Proficiency</th>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>HTML</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>CSS</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>JavaScript</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>Adobe Photoshop</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>Adobe Illustrator</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>Graphic Design Principles</td>
-                <td>Intermediate</td>
-            </tr>
-            <tr>
-                <td>Typography</td>
-                <td>Intermediate</td>
-            </tr>
-             <tr>
-                <td>Communication</td>
-                <td>Advanced</td>
-            </tr>
-            <tr>
-                <td>Problem Solving</td>
-                <td>Advanced</td>
-            </tr>
-            <tr>
-                <td>Teamwork</td>
-                <td>Advanced</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</aside>
-</main>
-</body>
-<script src="script.js"></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></script>
+          </thead>
+          <tbody>
+            <tr><td>Figma</td><td>Intermediate</td></tr>
+            <tr><td>UX/UI Design</td><td>Intermediate</td></tr>
+            <tr><td>HTML</td><td>Intermediate</td></tr>
+            <tr><td>CSS</td><td>Intermediate</td></tr>
+            <tr><td>JavaScript</td><td>Intermediate</td></tr>
+            <tr><td>Adobe Photoshop</td><td>Intermediate</td></tr>
+            <tr><td>Adobe Illustrator</td><td>Intermediate</td></tr>
+            <tr><td>Communication</td><td>Advanced</td></tr>
+            <tr><td>Problem Solving</td><td>Advanced</td></tr>
+            <tr><td>Empathy & Collaboration</td><td>Advanced</td></tr>
+          </tbody>
+        </table>
+      </aside>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-4 mt-5">
+      <p class="mb-0">
+        © 2025 Ace Chianni — Designed with creativity, wellness, and intention.
+      </p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
