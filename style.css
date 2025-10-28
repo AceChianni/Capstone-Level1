@@ -1,240 +1,393 @@
+/* -----------------------------------
+   GLOBAL THEME VARIABLES
+----------------------------------- */
+:root {
+  --brand-blue: #5A7BBF;
+  --brand-purple: #8E7CC3;
+  --accent-light: #E8EAF6;
+  --text-dark: #1E1E2F;
+  --text-light: #FFFFFF;
+  --bg-light: #F6F8FA;
+  --bg-soft: #EEF3FB;
+  --hover-blue: #496AB0;
+  --focus-ring: rgba(90, 123, 191, 0.4);
+}
+
+/* -----------------------------------
+   GLOBAL RESET + BODY
+----------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #91bde9;
-}
-
-/* Override Bootstrap navbar color */
-.navbar-custom {
-  background-color: #58b7ff;
-}
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-nav .nav-link {
-  color: #0d1b88;
-}
-
-h1 {
-  color: #4000b8;
-  text-align: center;
-  font-family: Caveat, sans-serif;
-  font-style: italic;
-  margin-top: 5%;
-}
-
-/* index carousel */
-.carousel-index img {
-  margin-top: 10%;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-}
-.carousel-control-prev,
-.carousel-control-next {
-  padding-top: 40%;
-}
-
-.carousel-text {
-  color: #6a5acd;
-}
-
-/* my work carousel */
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: 'Caveat', sans-serif;
   margin: 0;
-}
-.carousel-container {
-  max-width: 800px;
-  margin: auto;
-}
-
-.carousel-item img {
-  max-width: 100%;
-  height: 300px;
-  object-fit: contain;
-  border-radius: 8px;
+  padding: 0;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
-.carousel-caption {
-  margin-top: 100%;
-  color: #4c4cf0;
-  font-size: 18px;
-  text-shadow: 1px 1px 2px rgba(100, 226, 237, 0.556);
+/* Smooth link focus */
+a:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  border-radius: 3px;
+}
+
+/* -----------------------------------
+   NAVBAR
+----------------------------------- */
+.navbar-custom {
+  background-color: var(--brand-blue);
+  padding: 0.75rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-custom .navbar-brand {
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: var(--accent-light);
+  position: relative;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+/* Hover highlight underline */
+.navbar-custom .navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-light);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Hover or focus */
+.navbar-custom .navbar-nav .nav-link:hover,
+.navbar-custom .navbar-nav .nav-link:focus {
+  color: var(--text-light);
+  outline: none;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover::after,
+.navbar-custom .navbar-nav .nav-link:focus::after {
+  width: 100%;
+}
+
+/* Active Page */
+.navbar-custom .navbar-nav .nav-link.active {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.navbar-custom .navbar-nav .nav-link.active::after {
+  width: 100%;
+  background-color: var(--text-light);
+}
+
+/* -----------------------------------
+   HERO SECTION
+----------------------------------- */
+h1 {
+  color: var(--brand-purple);
+  text-align: center;
+  font-style: italic;
+  margin-top: 3%;
+  font-size: 2rem;
+  line-height: 1.4;
+  padding: 0 1rem;
+}
+
+/* -----------------------------------
+   BUTTONS + LINKS
+----------------------------------- */
+.btn,
+button {
+  border-radius: 25px;
+  padding: 0.5rem 1.2rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  background-color: var(--brand-blue);
+  color: var(--text-light);
+  border-color: var(--brand-blue);
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+  background-color: var(--hover-blue);
+  border-color: var(--hover-blue);
+}
+
+.btn-outline-secondary {
+  color: var(--brand-blue);
+  background-color: transparent;
+  border: 2px solid var(--brand-blue);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--brand-blue);
+  color: var(--text-light);
+}
+
+/* -----------------------------------
+   CAROUSEL
+----------------------------------- */
+.carousel {
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--bg-soft);
 }
 
 .carousel-inner img {
-  width: 780px;
-  height: 560px;
+  width: 100%;
+  height: 480px;
   object-fit: cover;
+  border-radius: 8px;
 }
 
-/* calc */
-
-.calculator-container {
-  max-width: 300px;
-  margin: 10;
-  padding: 10px;
-  background-color: #06919e;
-  box-shadow: 0 0 10px #2c4bd7ae;
-  margin-top: 10px;
+/* Carousel Caption Refinement */
+.carousel-caption {
+  bottom: 1rem;
+  color: var(--text-dark);
+  background-color: rgba(255, 255, 255, 0.72); /* softer transparency */
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 1.25rem 1rem;
   text-align: center;
-  position: sticky;
-}
-
-/* contact */
-.contact-form {
-  max-width: 400px;
+  max-width: 85%;
   margin: 0 auto;
-  padding: 10px;
-  background-color: #216990;
-  box-shadow: 0 0 10px #2c4bd7ae;
-  margin-top: 10px;
-  text-align: center;
-  position: static;
+  font-family: 'Inter', 'Segoe UI', Helvetica, Arial, sans-serif; /* clean sans-serif */
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-/* timeline */
 
-main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
+.carousel-caption h5 {
+  font-weight: 700;
+  color: var(--brand-blue);
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  font-family: 'Poppins', 'Inter', sans-serif;
 }
-section {
+
+.carousel-caption p {
+  font-size: 1rem;
+  color: #2b2b3a;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+
+/* -----------------------------------
+   CAROUSEL CONTROL BUTTONS + STATES
+----------------------------------- */
+.carousel-playing {
+  background-color: var(--bg-soft);
+  transition: background-color 0.5s ease;
+}
+
+.carousel-paused {
+  background-color: #ffffff;
+  transition: background-color 0.5s ease;
+}
+
+#pauseCarousel, #playCarousel {
+  font-size: 0.9rem;
+  border-radius: 20px;
+  margin-top: 10px;
+  padding: 0.4rem 1rem;
+  transition: all 0.3s ease;
+}
+
+/* Default state */
+#pauseCarousel {
+  background-color: var(--text-light);
+  color: var(--brand-blue);
+  border: 2px solid var(--brand-blue);
+}
+
+#playCarousel {
+  background-color: var(--brand-blue);
+  color: var(--text-light);
+  border: 2px solid var(--brand-blue);
+}
+
+/* Hover effect */
+#pauseCarousel:hover,
+#playCarousel:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+/* Active paused state */
+#pauseCarousel.active {
+  background-color: var(--brand-blue);
+  color: var(--text-light);
+  border-color: var(--brand-blue);
+}
+
+.carousel-paused .carousel-caption {
+  background-color: rgba(240, 240, 240, 0.8);
+}
+
+/* -----------------------------------
+   CONTACT FORM
+----------------------------------- */
+.contact-form {
+  max-width: 450px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--brand-blue);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(90, 123, 191, 0.2);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.contact-form button {
+  margin-top: 15px;
+}
+
+/* -----------------------------------
+   TIMELINE
+----------------------------------- */
+.timeline {
   position: relative;
   max-width: 800px;
-  margin: auto;
-}
-
-.timeline {
-  width: 45%;
-  max-height: 500px;
-  overflow-y: auto;
+  margin: 50px auto;
+  padding: 10px;
 }
 
 .timeline-line {
   position: absolute;
-  margin-top: 10%;
   width: 4px;
   height: 100%;
-  background-color: rgb(0, 11, 128);
-  left: 270px;
+  background-color: var(--brand-blue);
+  left: 50%;
+  top: 0;
   transform: translateX(-50%);
-  z-index: 0;
-}
-
-.timeline-point {
-  position: relative;
-  margin-top: 12%;
-  background-color: purple;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  left: 270px;
-  transform: translateX(-50%);
-  z-index: 1;
 }
 
 .timeline-event {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 20px;
   position: relative;
-  font-style: italic;
-  z-index: 2;
+  background: var(--bg-soft);
+  border: 1px solid var(--brand-blue);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  width: 45%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
-.timeline-date,
-.timeline-title,
-.timeline-description {
-  margin: 0;
-  padding: 10px;
+.timeline-event:nth-child(odd) {
+  left: 0;
 }
 
-.timeline-date,
-.timeline-title {
-  text-align: left;
+.timeline-event:nth-child(even) {
+  left: 55%;
+}
+
+.timeline-date {
   font-weight: bold;
-  flex: 1;
+  color: var(--brand-blue);
+}
+
+.timeline-title {
+  color: var(--brand-purple);
+  font-weight: 600;
+  margin-top: 5px;
 }
 
 .timeline-description {
-  text-align: center;
-  margin-left: 40px;
-  padding-left: 10%;
-  font-size: small;
-  flex: 0;
-  transform: translateX(-20%);
-
-  background-color: rgba(103, 175, 238, 0.602);
-}
-/* both table and timeline adjustments */
-@media (max-width: 576px) {
-  .container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-  }
-
-  .timeline,
-  .table-container {
-    width: 100%;
-    margin-bottom: 20px;
-  }
+  margin-top: 10px;
+  font-size: 0.95rem;
 }
 
-/* Skills Table */
+/* -----------------------------------
+   TABLE (SKILLS)
+----------------------------------- */
 .table-container {
   width: 100%;
-  padding-top: 140px;
-}
-table {
-  width: 80%;
-  border-collapse: collapse;
-  margin-bottom: 22px;
-  padding-left: 125px;
-  background-color: #add8e6;
+  padding-top: 100px;
+  overflow-x: auto;
 }
 
-th,
-td {
-  padding: 10px;
+table {
+  width: 90%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  background-color: var(--bg-soft);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px;
   text-align: left;
-  border: 1px solid #1b4fbf7b;
+  border: 1px solid var(--accent-light);
 }
 
 th {
-  background-color: #6a5acd; /* Purple color for header */
+  background-color: var(--brand-blue);
+  color: var(--text-light);
 }
 
 td {
-  background-color: #6495ed; /* Blue color for cells */
+  background-color: var(--accent-light);
 }
 
 tr:hover td {
-  background-color: #c9c9fb; /* Lavender color on hover */
+  background-color: #d9e3ff;
 }
 
-/* content cards */
+/* -----------------------------------
+   CONTENT CARDS
+----------------------------------- */
 .card-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 40px;
 }
 
 .card {
   perspective: 1000px;
-  width: 200px;
-  height: 300px;
+  width: 220px;
+  height: 320px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  margin: 10px;
-  backface-visibility: hidden;
 }
 
 .card:hover .card-inner {
@@ -246,31 +399,84 @@ tr:hover td {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.5s;
-  backface-visibility: hidden;
 }
 
+.card-face,
 .card-back {
-  transform: rotateY(180deg);
-  text-align: center;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 10px;
-  background-color: #1fabc7;
-}
-
-.card-face {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-face {
+  background-color: var(--bg-soft);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
-  font-weight: bold;
-  color: #5b50c098;
+  color: var(--brand-blue);
+  font-size: 1.2rem;
+  font-weight: 600;
 }
+
 .card-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
+}
+
+.card-back {
+  background-color: var(--brand-purple);
+  transform: rotateY(180deg);
+  color: var(--text-light);
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* -----------------------------------
+   FOOTER
+----------------------------------- */
+footer {
+  background-color: var(--brand-blue);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  margin-top: 40px;
+}
+
+/* -----------------------------------
+   RESPONSIVE ADJUSTMENTS
+----------------------------------- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .carousel-inner img {
+    height: 300px;
+  }
+
+  .carousel-caption {
+    max-width: 90%;
+    font-size: 0.9rem;
+  }
+
+  .timeline-event {
+    width: 90%;
+    left: 5% !important;
+  }
+
+  table {
+    width: 95%;
+  }
+
+  .card {
+    width: 180px;
+    height: 260px;
+  }
 }
