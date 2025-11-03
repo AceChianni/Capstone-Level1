@@ -1,125 +1,153 @@
+<!-- content.html -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Work</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat&effect=shadow-multiple">
-  </head>
-  <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand-lg bs-info">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="index.html">ArtistAnnii</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#ArtistAnnii"
-          aria-controls="ArtistAnnii"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="ArtistAnnii">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">My Works</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-          </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Work | Ace Chianni</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous"/>
+
+  <!-- Fonts & Styles -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat&family=Inter:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="css/colors.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/case-studies.css" />
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- PAGE HEADER -->
+  <header class="text-center my-5">
+    <h1>Case Studies & Creative Works</h1>
+    <p class="lead">Exploring design, storytelling, and digital craftsmanship.</p>
+  </header>
+
+  <!-- CASE STUDY GRID -->
+  <main class="case-grid container py-5">
+
+    <!-- Case Study 1 -->
+    <article class="case-card fade-section">
+      <div class="case-image">
+        <img src="images/movieposter.jpg" alt="Minimalist Beauty and the Beast poster">
+        <span class="case-tag">Photoshop · Typography</span>
+      </div>
+      <div class="case-content">
+        <h3>Beauty & The Beast — Minimalist Movie Poster</h3>
+        <p>
+          A minimalist reimagining of the Disney classic using shape, silhouette, and emotional tone.
+          The design features Belle and Beast’s dance in soft blue hues, accompanied by the tagline:
+          <em>“Who could ever learn to love a beast.”</em>  
+          This project honed composition, symbolism, and balance through typography and form.
+        </p>
+        <div class="case-meta">
+          <span>Tools: Adobe Photoshop</span>
+          <span>Focus: Typography · Composition · Color Theory</span>
         </div>
       </div>
-    </nav>
+    </article>
 
-    <h1>What Have I Done</h1>
-    <section>
-       <!-- Carousel -->
-      <div class="container mt-3 carousel-container">
-    <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://images.unsplash.com/photo-1632187981988-40f3cbaeef5e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Aerial view of film production">
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1612544409025-e1f6a56c1152?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Snapshot of filming on set">
-            </div>
-            <div class="carousel-item">
-                <img src="https://images.unsplash.com/photo-1621701816825-b5abfadae6c3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGZpbG0lMjBwcm9kdWN0aW9ufGVufDB8fDB8fHww/776x560" class="d-block w-100" alt="Film camera">
-            </div>
+    <!-- Case Study 2 -->
+    <article class="case-card fade-section">
+      <div class="case-image">
+        <img src="images/postcard.jpg" alt="Retro travel postcard for Tokyo, Japan">
+        <span class="case-tag">Photoshop · Vintage Design</span>
+      </div>
+      <div class="case-content">
+        <h3>Tokyo, Japan — Retro Travel Postcard</h3>
+        <p>
+          Designed a retro postcard combining found imagery, typography, and pattern work.
+          This collage captures Tokyo’s skyline through a vintage lens, layered with kanji and English text
+          for cultural duality.  
+          Aged textures and selective desaturation evoke nostalgia and wanderlust.
+        </p>
+        <div class="case-meta">
+          <span>Tools: Adobe Photoshop</span>
+          <span>Focus: Collage · Texture · Typography Hierarchy</span>
         </div>
-        <!-- Navigation arrows -->
-        <button class="carousel-control-back" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-forward" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    </div>
-    </section>
+      </div>
+    </article>
 
-    <section>
-      <div class="card-container">
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-face card-front">
-               <img src="https://images.unsplash.com/photo-1626251851903-1143b5c6f057?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGxvZ28lMjBkZXNpZ258ZW58MHx8MHx8fDA%3D/200x300" alt="Crown logo design on computer">
-            </div>
-            <div class="card-face card-back">
-                I've created multiple logos for my friends' businesses 
-            </div>
+    <!-- Case Study 3 -->
+    <article class="case-card fade-section">
+      <div class="case-image">
+        <img src="images/trick.jpg" alt="Trompe l'oeil photo manipulation showing back as a guitar">
+        <span class="case-tag">Digital Art · Conceptual Design</span>
+      </div>
+      <div class="case-content">
+        <h3>“Strings Attached” — Trompe L’oeil Self Portrait</h3>
+        <p>
+          A conceptual composite where my back forms the body of a guitar — exploring connection between art, self, and sound.
+          This exercise refined my non-destructive editing, blending, and realism techniques while integrating body form
+          with inanimate texture for an uncanny illusion.
+        </p>
+        <div class="case-meta">
+          <span>Tools: Adobe Photoshop</span>
+          <span>Focus: Photo Manipulation · Lighting · Layering</span>
         </div>
-    </div>
+      </div>
+    </article>
 
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-face card-front">
-              <img src="https://images.unsplash.com/photo-1576153192396-180ecef2a715?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8Z3JhcGhpYyUyMGRlc2lnbiUyMGxvZ298ZW58MHx8MHx8fDA%3D/200x300" alt="App design framework">
-            </div>
-            <div class="card-face card-back">
-                I got my first job to build a website using squarespace as a host and template.
-            </div>
+    <!-- Case Study 4: Brunch Babes Brand Identity -->
+    <article class="case-card fade-section">
+      <div class="case-image">
+        <img src="images/BBlogo.jpg" alt="Brunch Babes logo">
+        <span class="case-tag">Brand Identity · Illustration</span>
+      </div>
+      <div class="case-content">
+        <h3>Brunch Babes — “Lemme Feed You”</h3>
+        <p>
+          A playful, feminine identity concept designed for <strong>Brunch Babes</strong>,
+          a one-woman culinary brand specializing in pop-up brunch events and soul food.
+          The creative direction aimed to blend comfort and confidence — balancing hand-drawn warmth
+          with modern minimalism.
+        </p>
+        <p>
+          The logo concept features hand-illustrated type inspired by retro diners, paired with a subtle
+          fork-and-plate motif. The design remains in its sketch phase, reflecting the organic, homegrown
+          energy of the brand’s beginnings.
+        </p>
+        <div class="case-meta">
+          <span>Tools: Adobe Illustrator · Procreate</span>
+          <span>Focus: Brand Storytelling · Illustration · Typography</span>
         </div>
-    </div>
 
-    <div class="card">
-        <div class="card-inner">
-            <div class="card-face card-front">
-               <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXJ0JTIwZGVwYXJ0bWVudCUyMGluJTIwZmlsbXxlbnwwfHwwfHx8MA%3D%3D/200x300" alt="Colorful paintbrushes">
-            </div>
-            <div class="card-face card-back">
-                Learned new techniques utilized within the art department of the film industry
-            </div>
+        <div class="case-gallery mt-3">
+          <img src="images/BB-sketches.png" alt="Brunch Babes initial logo sketches" class="thumb-img">
+          <img src="images/BBlogo.jpg" alt="Brunch Babes logo concept" class="thumb-img">
         </div>
-    </div>
-</div>
-    </section>
+      </div>
+    </article>
 
+  </main>
 
-  </body>
-<script src="script.js"></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></script>
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
 
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="Expanded view">
+  </div>
+
+  <script>
+    document.querySelectorAll('.case-image img, .thumb-img').forEach(img => {
+      img.addEventListener('click', () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+    document.getElementById('lightbox').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('active');
+    });
+  </script>
+</body>
 </html>
