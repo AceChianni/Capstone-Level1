@@ -1,0 +1,111 @@
+/* =====================================================
+   SKILLS TABLE — Ace Chianni Portfolio (Enhanced)
+   ===================================================== */
+
+#skills-section {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Fade-in animation */
+#skills-section.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+#skills-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skills Table */
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.skills-table th {
+  background: var(--blue-primary);
+  color: var(--text-light);
+  text-align: left;
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.skills-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+/* Hover effect */
+.skills-table tr:hover {
+  background-color: rgba(90, 123, 191, 0.12);
+  transition: background 0.3s ease;
+}
+
+/* Progress Bar Wrapper */
+.skill-bar {
+  background-color: rgba(233, 239, 255, 0.8);
+  border-radius: 6px;
+  height: 10px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 6px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress Fill */
+.skill-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--blue-primary), var(--blue-dark));
+  width: 0%;
+  transition: width 1s ease;
+}
+
+/* Animated fill on load */
+.skills-table.visible .skill-fill {
+  animation: fillSkill 1.2s ease forwards;
+}
+
+@keyframes fillSkill {
+  from { width: 0%; }
+  to { width: var(--skill-level); }
+}
+
+/* Section Heading */
+#skills-section h3 {
+  color: var(--blue-dark);
+  font-family: 'Caveat', cursive;
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #skills-section {
+    padding: 1.5rem;
+  }
+
+  .skills-table th,
+  .skills-table td {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+  #skills-section h3 {
+    font-size: 1.5rem;
+  }
+}

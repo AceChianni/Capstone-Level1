@@ -1,6 +1,9 @@
-# Capstone Project - Ace's Portfolio
+# Ace Chianni's Portfolio
 
-## Project Description
+This began as a captone project to create a mock simple portfoliio in order to display my skills at level 1 of my full stack knowledge. I am now taking the time to utilize it as a true professional portfolio in order to help my transition into a more creative tech based role
+
+
+## Capstone Project Description
 
 My project is a simple portfolio layout using cards, carousels, and a calculator to display the work that I've done and the journey I've been on to get to where I am today. It is just a clean design with some dynamic text and graphics utilizing some of the skills I've gathered today.
 
