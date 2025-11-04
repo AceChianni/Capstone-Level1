@@ -71,3 +71,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// ------------------------------
+// Project Modal Logic
+// ------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("project-modal");
+  const modalImg = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDesc = document.getElementById("modal-description");
+  const modalMeta = document.getElementById("modal-meta");
+  const modalClose = document.querySelector(".modal-close");
+
+  const projects = [
+    {
+      title: "AnniiMe Finder",
+      img: "images/anniime-thumb.jpg",
+      desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
+      meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration"
+    },
+    {
+      title: "Inkspresso — Fuel Your Imagination",
+      img: "images/inkspresso-thumb.jpg",
+      desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
+      meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility"
+    },
+    {
+      title: "Inkspression",
+      img: "images/inkspression-thumb.jpg",
+      desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
+      meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design"
+    }
+  ];
+
+  document.querySelectorAll(".btn-web").forEach((btn, i) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const project = projects[i];
+      modalImg.src = project.img;
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.desc;
+      modalMeta.textContent = project.meta;
+      modal.style.display = "flex";
+    });
+  });
+
+  modalClose.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+});

@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/colors.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/case-studies.css" />
+  <link rel="stylesheet" href="css/web-projects.css" />
 </head>
 
 <body>
@@ -28,7 +29,6 @@
 
   <!-- CASE STUDY GRID -->
   <main class="case-grid container py-5">
-
     <!-- Case Study 1 -->
     <article class="case-card fade-section">
       <div class="case-image">
@@ -105,48 +105,171 @@
           The creative direction aimed to blend comfort and confidence — balancing hand-drawn warmth
           with modern minimalism.
         </p>
-        <p>
-          The logo concept features hand-illustrated type inspired by retro diners, paired with a subtle
-          fork-and-plate motif. The design remains in its sketch phase, reflecting the organic, homegrown
-          energy of the brand’s beginnings.
-        </p>
-        <div class="case-meta">
-          <span>Tools: Adobe Illustrator · Procreate</span>
-          <span>Focus: Brand Storytelling · Illustration · Typography</span>
-        </div>
-
         <div class="case-gallery mt-3">
           <img src="images/BB-sketches.png" alt="Brunch Babes initial logo sketches" class="thumb-img">
           <img src="images/BBlogo.jpg" alt="Brunch Babes logo concept" class="thumb-img">
         </div>
       </div>
     </article>
-
   </main>
+
+  <!-- WEB PROJECTS & UX/UI BUILDS -->
+  <section id="web-projects" class="fade-section container py-5">
+    <h2 class="text-center mb-4">Web Projects & UX/UI Builds</h2>
+    <p class="text-center mb-5 lead">
+      Exploring creativity through code — blending user psychology, design systems, and functionality.
+    </p>
+
+    <div class="web-grid">
+      <!-- Project 1: AnniiMe Finder -->
+      <article class="web-card">
+        <div class="web-image">
+          <img src="images/anniime-thumb.jpg" alt="AnniiMe Finder app preview">
+          <span class="web-tag">Front-End · API Integration</span>
+        </div>
+        <div class="web-content">
+          <h3>AnniiMe Finder</h3>
+          <p>
+            A React-based anime discovery app powered by a public anime API.
+            Built to simplify search and exploration, the interface adapts to each user’s preferences for an intuitive experience.
+          </p>
+          <div class="web-meta">
+            <span>Tools: React · JavaScript · REST API</span>
+          </div>
+          <a href="#" class="btn-web">View Project</a>
+        </div>
+      </article>
+
+      <!-- Project 2: Inkspresso -->
+      <article class="web-card">
+        <div class="web-image">
+          <img src="images/inkspresso-thumb.jpg" alt="Inkspresso ecommerce mockup">
+          <span class="web-tag">Full-Stack · eCommerce</span>
+        </div>
+        <div class="web-content">
+          <h3>Inkspresso <small class="text-muted">— Fuel Your Imagination</small></h3>
+          <p>
+            A full-stack café eCommerce concept merging books, brews, and mindfulness.
+            Featuring a built-in book API for a digital library, a product menu for coffee, tea, and pastries,
+            and dark mode accessibility for immersive browsing.
+          </p>
+          <div class="web-meta">
+            <span>Tools: Node.js · Express · MongoDB · AWS (formerly) · HTML/CSS</span>
+          </div>
+          <a href="#" class="btn-web">View Project</a>
+        </div>
+      </article>
+
+      <!-- Project 3: Inkspression -->
+      <article class="web-card">
+        <div class="web-image">
+          <img src="images/inkspression-thumb.jpg" alt="Inkspression journaling app preview">
+          <span class="web-tag">UX/UI · Productivity App</span>
+        </div>
+        <div class="web-content">
+          <h3>Inkspression</h3>
+          <p>
+            A neurodivergent-friendly journaling and productivity platform combining design, psychology, and mindful interaction.
+            Currently in development as a holistic web app for reflection, focus, and self-expression.
+          </p>
+          <div class="web-meta">
+            <span>Tools: React · Vite · Tailwind · Firebase</span>
+          </div>
+          <a href="#" class="btn-web">View Project</a>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <div id="footer-placeholder"></div>
+
+  <!-- PROJECT MODAL -->
+  <div id="project-modal" class="project-modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <div class="carousel-container">
+        <button class="carousel-prev">&#10094;</button>
+        <img id="modal-image" src="" alt="Expanded project view">
+        <button class="carousel-next">&#10095;</button>
+      </div>
+      <div class="modal-text">
+        <h3 id="modal-title"></h3>
+        <p id="modal-description"></p>
+        <div class="modal-meta" id="modal-meta"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox">
-    <img id="lightbox-img" src="" alt="Expanded view">
-  </div>
-
   <script>
-    document.querySelectorAll('.case-image img, .thumb-img').forEach(img => {
-      img.addEventListener('click', () => {
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        lightboxImg.src = img.src;
-        lightbox.classList.add('active');
+    document.addEventListener("DOMContentLoaded", () => {
+      const modal = document.getElementById("project-modal");
+      const modalImg = document.getElementById("modal-image");
+      const modalTitle = document.getElementById("modal-title");
+      const modalDesc = document.getElementById("modal-description");
+      const modalMeta = document.getElementById("modal-meta");
+      const modalClose = document.querySelector(".modal-close");
+      const prevBtn = document.querySelector(".carousel-prev");
+      const nextBtn = document.querySelector(".carousel-next");
+
+      let currentIndex = 0;
+      let currentImages = [];
+
+      const projects = [
+        {
+          title: "AnniiMe Finder",
+          desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
+          meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
+          images: ["images/anniime-thumb.jpg", "images/anniime-2.jpg", "images/anniime-3.jpg"]
+        },
+        {
+          title: "Inkspresso — Fuel Your Imagination",
+          desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
+          meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
+          images: ["images/inkspresso-thumb.jpg", "images/inkspresso-2.jpg", "images/inkspresso-3.jpg"]
+        },
+        {
+          title: "Inkspression",
+          desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
+          meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
+          images: ["images/inkspression-thumb.jpg", "images/inkspression-2.jpg", "images/inkspression-3.jpg"]
+        }
+      ];
+
+      document.querySelectorAll(".btn-web").forEach((btn, i) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const project = projects[i];
+          currentImages = project.images;
+          currentIndex = 0;
+          modalImg.src = currentImages[currentIndex];
+          modalTitle.textContent = project.title;
+          modalDesc.textContent = project.desc;
+          modalMeta.textContent = project.meta;
+          modal.style.display = "flex";
+        });
       });
-    });
-    document.getElementById('lightbox').addEventListener('click', () => {
-      document.getElementById('lightbox').classList.remove('active');
+
+      nextBtn.addEventListener("click", () => {
+        if (!currentImages.length) return;
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+      });
+
+      prevBtn.addEventListener("click", () => {
+        if (!currentImages.length) return;
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+      });
+
+      modalClose.addEventListener("click", () => (modal.style.display = "none"));
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.style.display = "none";
+      });
     });
   </script>
 </body>
