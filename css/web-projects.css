@@ -1,30 +1,34 @@
 /* ==========================================================
-   WEB PROJECTS — Dynamic Tile Layout
+   WEB PROJECTS & UX/UI BUILDS — Portfolio Section
    ========================================================== */
+
+/* Grid Layout */
 .web-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
 }
 
+/* Individual Project Card */
 .web-card {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
 }
 
 .web-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
 }
 
+/* Image Section */
 .web-image {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-bottom: 3px solid rgba(90, 123, 191, 0.2);
 }
 
 .web-image img {
@@ -49,145 +53,239 @@
   padding: 0.35rem 0.8rem;
   border-radius: 0.6rem;
   backdrop-filter: blur(5px);
+  letter-spacing: 0.3px;
   text-transform: uppercase;
 }
 
+/* Content Section */
 .web-content {
-  padding: 1.75rem;
+  padding: 1.5rem;
 }
 
 .web-content h3 {
-  color: var(--blue-dark);
   font-family: 'Caveat', cursive;
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
+  color: var(--blue-dark);
+  font-size: 1.7rem;
+  margin-bottom: 0.4rem;
 }
 
 .web-content p {
-  color: #333;
   font-size: 0.95rem;
   line-height: 1.6;
+  color: #333;
 }
 
+.web-meta {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: #555;
+  font-style: italic;
+}
+
+/* View Project Button */
 .btn-web {
-  display: inline-block;
-  margin-top: 1.2rem;
-  background: var(--blue-primary);
-  color: white;
-  font-weight: 600;
-  letter-spacing: 0.4px;
-  padding: 0.5rem 1.2rem;
-  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #5A7BBF, #0d1b88);
+  color: #fff;
+  padding: 0.55rem 1.2rem;
+  border-radius: 10px;
   text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+  display: inline-block;
   transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(90, 123, 191, 0.3);
 }
 
 .btn-web:hover {
-  background: var(--blue-dark);
+  background: linear-gradient(135deg, #6e90d0, #1322a8);
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(90, 123, 191, 0.5);
 }
 
 /* ==========================================================
-   MODAL / MULTI-IMAGE CAROUSEL
+   PROJECT MODAL (Glassmorphic Overlay)
    ========================================================== */
+
 .project-modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
+  background: rgba(10, 20, 40, 0.8);
+  backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  animation: fadeIn 0.4s ease;
+  z-index: 999;
+  overflow-y: auto;
+  padding: 2rem 1rem;
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 1rem;
-  max-width: 850px;
-  width: 90%;
   padding: 2rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  max-width: 900px;
+  width: 95%;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  position: relative;
-}
-
-.carousel-container {
-  position: relative;
-  display: flex;
   align-items: center;
-  justify-content: center;
 }
-
-.carousel-container img {
-  width: 100%;
-  border-radius: 0.75rem;
-  object-fit: contain;
-  max-height: 70vh;
-}
-
-.carousel-prev, .carousel-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(90, 123, 191, 0.85);
-  border: none;
-  color: white;
-  font-size: 1.8rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.carousel-prev:hover, .carousel-next:hover {
-  background: var(--blue-dark);
-}
-
-.carousel-prev { left: 10px; }
-.carousel-next { right: 10px; }
 
 .modal-close {
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  font-size: 2rem;
-  color: #555;
+  top: 12px;
+  right: 18px;
+  font-size: 1.6rem;
   cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.modal-close:hover { color: #5A7BBF; }
+
+.carousel-container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.image-wrapper {
+  overflow: hidden;
+  border-radius: 0.8rem;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 auto;
+  transition: height 0.4s ease;
+}
+
+#modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.carousel-dots span {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background: #5A7BBF;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(90, 123, 191, 0.6);
+}
+
+/* Modal Text */
+.modal-text {
+  margin-top: 1.5rem;
+  text-align: left;
+  color: #e9edff;
+  width: 100%;
+  max-width: 800px;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  will-change: opacity, transform;
 }
 
 .modal-text h3 {
-  color: var(--blue-dark);
-  font-family: 'Caveat', cursive;
-  font-size: 1.8rem;
+  color: #fff;
+  font-size: 1.6rem;
   margin-bottom: 0.5rem;
-}
-
-.modal-text p {
-  color: #333;
-  line-height: 1.6;
+  font-family: 'Caveat', cursive;
+  word-wrap: break-word;
 }
 
 .modal-meta {
   font-size: 0.9rem;
-  color: #555;
-  margin-top: 1rem;
+  color: #bfc7e0;
+  margin-top: 0.5rem;
+  line-height: 1.4;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* Navigation Buttons */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 45%;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(40px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+.carousel-prev:hover,
+.carousel-next:hover {
+  background: #5A7BBF;
+  transform: scale(1.1);
 }
 
-@media (max-width: 768px) {
-  .modal-content { padding: 1.5rem; }
-  .carousel-prev, .carousel-next { font-size: 1.4rem; }
+.carousel-prev { left: -45px; }
+.carousel-next { right: -45px; }
+
+/* Fade Transitions */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Keyboard focus */
+.carousel-prev:focus,
+.carousel-next:focus,
+.modal-close:focus,
+.carousel-dots span:focus {
+  outline: 2px solid #5A7BBF;
+  outline-offset: 3px;
+}
+
+/* Responsive Fix */
+@media (max-height: 700px) {
+  .modal-content {
+    padding: 1.5rem;
+  }
+  .image-wrapper {
+    max-height: 50vh;
+  }
+  .modal-text {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* =============================================
+   Fade-In + Rise Animation
+   ============================================= */
+.fade-in-rise {
+  opacity: 1;
+  transform: translateY(-6px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }

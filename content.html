@@ -1,4 +1,5 @@
 <!-- content.html -->
+<!-- content.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,7 +92,7 @@
       </div>
     </article>
 
-    <!-- Case Study 4: Brunch Babes Brand Identity -->
+    <!-- Case Study 4 -->
     <article class="case-card fade-section">
       <div class="case-image">
         <img src="images/BBlogo.jpg" alt="Brunch Babes logo">
@@ -113,6 +114,13 @@
     </article>
   </main>
 
+  <!-- ============================= -->
+  <!-- CASE STUDY IMAGE LIGHTBOX -->
+  <!-- ============================= -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded artwork view">
+    <img id="lightbox-img" src="" alt="Expanded project artwork">
+  </div>
+
   <!-- WEB PROJECTS & UX/UI BUILDS -->
   <section id="web-projects" class="fade-section container py-5">
     <h2 class="text-center mb-4">Web Projects & UX/UI Builds</h2>
@@ -121,7 +129,7 @@
     </p>
 
     <div class="web-grid">
-      <!-- Project 1: AnniiMe Finder -->
+      <!-- Project 1 -->
       <article class="web-card">
         <div class="web-image">
           <img src="images/anniime-thumb.jpg" alt="AnniiMe Finder app preview">
@@ -140,7 +148,7 @@
         </div>
       </article>
 
-      <!-- Project 2: Inkspresso -->
+      <!-- Project 2 -->
       <article class="web-card">
         <div class="web-image">
           <img src="images/inkspresso-thumb.jpg" alt="Inkspresso ecommerce mockup">
@@ -160,7 +168,7 @@
         </div>
       </article>
 
-      <!-- Project 3: Inkspression -->
+      <!-- Project 3 -->
       <article class="web-card">
         <div class="web-image">
           <img src="images/inkspression-thumb.jpg" alt="Inkspression journaling app preview">
@@ -187,12 +195,16 @@
   <!-- PROJECT MODAL -->
   <div id="project-modal" class="project-modal">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
+      <span class="modal-close" aria-label="Close project view">&times;</span>
       <div class="carousel-container">
-        <button class="carousel-prev">&#10094;</button>
-        <img id="modal-image" src="" alt="Expanded project view">
-        <button class="carousel-next">&#10095;</button>
+        <button class="carousel-prev" aria-label="Previous slide">&#10094;</button>
+        <div class="image-wrapper">
+          <img id="modal-image" src="" alt="Expanded project view">
+        </div>
+        <button class="carousel-next" aria-label="Next slide">&#10095;</button>
+        <div id="carousel-dots" class="carousel-dots"></div>
       </div>
+
       <div class="modal-text">
         <h3 id="modal-title"></h3>
         <p id="modal-description"></p>
@@ -205,72 +217,327 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const modal = document.getElementById("project-modal");
-      const modalImg = document.getElementById("modal-image");
-      const modalTitle = document.getElementById("modal-title");
-      const modalDesc = document.getElementById("modal-description");
-      const modalMeta = document.getElementById("modal-meta");
-      const modalClose = document.querySelector(".modal-close");
-      const prevBtn = document.querySelector(".carousel-prev");
-      const nextBtn = document.querySelector(".carousel-next");
+  <!-- <script>
+  // ===============================
+  // LIGHTBOX FOR DIGITAL ART
+  // ===============================
+  document.querySelectorAll('.case-image img, .thumb-img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+  });
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('active');
+  });
 
-      let currentIndex = 0;
-      let currentImages = [];
+  // ===============================
+  // WEB PROJECTS MODAL + CAROUSEL
+  // ===============================
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("project-modal");
+    const modalImg = document.getElementById("modal-image");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-description");
+    const modalMeta = document.getElementById("modal-meta");
+    const modalClose = document.querySelector(".modal-close");
+    const prevBtn = document.querySelector(".carousel-prev");
+    const nextBtn = document.querySelector(".carousel-next");
+    const dotContainer = document.getElementById("carousel-dots");
+    const imageWrapper = document.querySelector(".image-wrapper");
 
-      const projects = [
-        {
-          title: "AnniiMe Finder",
-          desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
-          meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
-          images: ["images/anniime-thumb.jpg", "images/anniime-2.jpg", "images/anniime-3.jpg"]
-        },
-        {
-          title: "Inkspresso — Fuel Your Imagination",
-          desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
-          meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
-          images: ["images/inkspresso-thumb.jpg", "images/inkspresso-2.jpg", "images/inkspresso-3.jpg"]
-        },
-        {
-          title: "Inkspression",
-          desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
-          meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
-          images: ["images/inkspression-thumb.jpg", "images/inkspression-2.jpg", "images/inkspression-3.jpg"]
-        }
-      ];
+    // --- Accessibility: Screen Reader Announcements ---
+    const ariaLive = document.createElement("div");
+    ariaLive.setAttribute("aria-live", "polite");
+    ariaLive.setAttribute("class", "sr-only");
+    ariaLive.style.position = "absolute";
+    ariaLive.style.left = "-9999px";
+    document.body.appendChild(ariaLive);
 
-      document.querySelectorAll(".btn-web").forEach((btn, i) => {
-        btn.addEventListener("click", (e) => {
-          e.preventDefault();
-          const project = projects[i];
-          currentImages = project.images;
-          currentIndex = 0;
-          modalImg.src = currentImages[currentIndex];
-          modalTitle.textContent = project.title;
-          modalDesc.textContent = project.desc;
-          modalMeta.textContent = project.meta;
-          modal.style.display = "flex";
-        });
-      });
+    let currentIndex = 0;
+    let currentImages = [];
+    let modalOpen = false;
 
-      nextBtn.addEventListener("click", () => {
-        if (!currentImages.length) return;
-        currentIndex = (currentIndex + 1) % currentImages.length;
-        modalImg.src = currentImages[currentIndex];
-      });
+    const projects = [
+      {
+        title: "AnniiMe Finder",
+        desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
+        meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
+        images: ["images/anniime-home.jpg", "images/anniime-results.jpg", "images/anniime-details.jpg"]
+      },
+      {
+        title: "Inkspresso — Fuel Your Imagination",
+        desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
+        meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
+        images: ["images/inkspresso-home.jpg", "images/inkspresso-menu.jpg", "images/inkspresso-library.jpg"]
+      },
+      {
+        title: "Inkspression",
+        desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
+        meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
+        images: ["images/inkspression-dashboard.jpg", "images/inkspression-entry.jpg", "images/inkspression-theme.jpg"]
+      }
+    ];
 
-      prevBtn.addEventListener("click", () => {
-        if (!currentImages.length) return;
-        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-        modalImg.src = currentImages[currentIndex];
-      });
-
-      modalClose.addEventListener("click", () => (modal.style.display = "none"));
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) modal.style.display = "none";
+    document.querySelectorAll(".btn-web").forEach((btn, i) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const project = projects[i];
+        currentImages = project.images;
+        currentIndex = 0;
+        updateModal(project);
+        modal.style.display = "flex";
+        modalOpen = true;
+        fadeInAll();
       });
     });
-  </script>
+
+    nextBtn.addEventListener("click", () => changeSlide(1));
+    prevBtn.addEventListener("click", () => changeSlide(-1));
+
+    function changeSlide(direction) {
+      if (!currentImages.length) return;
+      fadeOutAll();
+      setTimeout(() => {
+        currentIndex = (currentIndex + direction + currentImages.length) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+        updateDots();
+        resizeWrapper();
+        fadeInAll();
+        ariaLive.textContent = `Slide ${currentIndex + 1} of ${currentImages.length} shown for ${modalTitle.textContent}`;
+      }, 400);
+    }
+
+    function updateModal(project) {
+      modalImg.src = currentImages[currentIndex];
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.desc;
+      modalMeta.textContent = project.meta;
+
+      dotContainer.innerHTML = "";
+      currentImages.forEach((_, index) => {
+        const dot = document.createElement("span");
+        if (index === currentIndex) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          fadeOutAll();
+          setTimeout(() => {
+            currentIndex = index;
+            modalImg.src = currentImages[currentIndex];
+            updateDots();
+            resizeWrapper();
+            fadeInAll();
+            ariaLive.textContent = `Slide ${currentIndex + 1} of ${currentImages.length} shown for ${modalTitle.textContent}`;
+          }, 400);
+        });
+        dotContainer.appendChild(dot);
+      });
+
+      resizeWrapper();
+    }
+
+    function resizeWrapper() {
+      modalImg.onload = () => {
+        const ratio = modalImg.naturalHeight / modalImg.naturalWidth;
+        const maxWidth = 800;
+        const newHeight = Math.min(600, maxWidth * ratio);
+        imageWrapper.style.height = `${newHeight}px`;
+      };
+    }
+
+    function updateDots() {
+      document.querySelectorAll(".carousel-dots span").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    function fadeOutAll() {
+      [modalImg, modalTitle, modalDesc, modalMeta].forEach(el => el.classList.add("fade-out"));
+    }
+
+    function fadeInAll() {
+      [modalImg, modalTitle, modalDesc, modalMeta].forEach(el => {
+        el.classList.remove("fade-out");
+        el.classList.add("fade-in");
+        setTimeout(() => el.classList.remove("fade-in"), 400);
+      });
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalOpen = false;
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  });
+  </script> -->
+<script>
+  // ===============================
+  // LIGHTBOX FOR DIGITAL ART
+  // ===============================
+  document.querySelectorAll('.case-image img, .thumb-img').forEach(img => {
+    img.addEventListener('click', () => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = img.src;
+      lightbox.classList.add('active');
+    });
+  });
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('active');
+  });
+
+  // ===============================
+  // WEB PROJECTS MODAL + CAROUSEL
+  // ===============================
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("project-modal");
+    const modalImg = document.getElementById("modal-image");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-description");
+    const modalMeta = document.getElementById("modal-meta");
+    const modalClose = document.querySelector(".modal-close");
+    const prevBtn = document.querySelector(".carousel-prev");
+    const nextBtn = document.querySelector(".carousel-next");
+    const dotContainer = document.getElementById("carousel-dots");
+    const imageWrapper = document.querySelector(".image-wrapper");
+
+    // --- Accessibility: Screen Reader Announcements ---
+    const ariaLive = document.createElement("div");
+    ariaLive.setAttribute("aria-live", "polite");
+    ariaLive.setAttribute("class", "sr-only");
+    ariaLive.style.position = "absolute";
+    ariaLive.style.left = "-9999px";
+    document.body.appendChild(ariaLive);
+
+    let currentIndex = 0;
+    let currentImages = [];
+    let modalOpen = false;
+
+    const projects = [
+      {
+        title: "AnniiMe Finder",
+        desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
+        meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
+        images: ["images/anniime-home.jpg", "images/anniime-results.jpg", "images/anniime-details.jpg"]
+      },
+      {
+        title: "Inkspresso — Fuel Your Imagination",
+        desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
+        meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
+        images: ["images/inkspresso-home.jpg", "images/inkspresso-menu.jpg", "images/inkspresso-library.jpg"]
+      },
+      {
+        title: "Inkspression",
+        desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
+        meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
+        images: ["images/inkspression-dashboard.jpg", "images/inkspression-entry.jpg", "images/inkspression-theme.jpg"]
+      }
+    ];
+
+    document.querySelectorAll(".btn-web").forEach((btn, i) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const project = projects[i];
+        currentImages = project.images;
+        currentIndex = 0;
+        updateModal(project);
+        modal.style.display = "flex";
+        modalOpen = true;
+        fadeInAll();
+      });
+    });
+
+    nextBtn.addEventListener("click", () => changeSlide(1));
+    prevBtn.addEventListener("click", () => changeSlide(-1));
+
+    // Keyboard Navigation
+    document.addEventListener("keydown", (e) => {
+      if (!modalOpen) return;
+      if (e.key === "ArrowRight") changeSlide(1);
+      if (e.key === "ArrowLeft") changeSlide(-1);
+      if (e.key === "Escape") closeModal();
+    });
+
+    function changeSlide(direction) {
+      if (!currentImages.length) return;
+      fadeOutAll();
+      setTimeout(() => {
+        currentIndex = (currentIndex + direction + currentImages.length) % currentImages.length;
+        modalImg.src = currentImages[currentIndex];
+        updateDots();
+        resizeWrapper();
+        fadeInAll();
+        ariaLive.textContent = `Slide ${currentIndex + 1} of ${currentImages.length} shown for ${modalTitle.textContent}`;
+      }, 400);
+    }
+
+    function updateModal(project) {
+      modalImg.src = currentImages[currentIndex];
+      modalTitle.textContent = project.title;
+      modalDesc.textContent = project.desc;
+      modalMeta.textContent = project.meta;
+
+      dotContainer.innerHTML = "";
+      currentImages.forEach((_, index) => {
+        const dot = document.createElement("span");
+        if (index === currentIndex) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          fadeOutAll();
+          setTimeout(() => {
+            currentIndex = index;
+            modalImg.src = currentImages[currentIndex];
+            updateDots();
+            resizeWrapper();
+            fadeInAll();
+            ariaLive.textContent = `Slide ${currentIndex + 1} of ${currentImages.length} shown for ${modalTitle.textContent}`;
+          }, 400);
+        });
+        dotContainer.appendChild(dot);
+      });
+
+      resizeWrapper();
+    }
+
+    function resizeWrapper() {
+      modalImg.onload = () => {
+        const ratio = modalImg.naturalHeight / modalImg.naturalWidth;
+        const maxWidth = 800;
+        const newHeight = Math.min(600, maxWidth * ratio);
+        imageWrapper.style.height = `${newHeight}px`;
+      };
+    }
+
+    function updateDots() {
+      document.querySelectorAll(".carousel-dots span").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    function fadeOutAll() {
+      [modalImg, modalTitle, modalDesc, modalMeta].forEach(el => el.classList.add("fade-out"));
+    }
+
+    // Fade-in + Rise animation
+    function fadeInAll() {
+      [modalImg, modalTitle, modalDesc, modalMeta].forEach(el => {
+        el.classList.remove("fade-out");
+        el.classList.add("fade-in-rise");
+        setTimeout(() => el.classList.remove("fade-in-rise"), 500);
+      });
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalOpen = false;
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  });
+</script>
+
 </body>
 </html>
