@@ -1,3 +1,4 @@
+
 <!-- content.html -->
 <!DOCTYPE html>
 <html lang="en">
@@ -202,39 +203,34 @@
 
 
 <!-- ============================= -->
-<!-- PROJECT MODAL -->
+<!-- PROJECT MODAL (FULL CAROUSEL) -->
 <!-- ============================= -->
 <div id="project-modal" class="project-modal">
   <div class="modal-content">
+
     <span class="modal-close" aria-label="Close project view">&times;</span>
 
-    <img id="modal-image" src="" alt="Project preview">
+    <!-- IMAGE CAROUSEL -->
+    <div class="carousel-container">
+      <button class="carousel-prev" aria-label="Previous slide">&#10094;</button>
 
-    <div class="modal-text mt-3">
+      <div class="image-wrapper">
+        <img id="modal-image" src="" alt="Expanded project view" />
+      </div>
+
+      <button class="carousel-next" aria-label="Next slide">&#10095;</button>
+    </div>
+
+    <!-- DOT NAVIGATION -->
+    <div id="carousel-dots" class="carousel-dots"></div>
+
+    <!-- TEXT BELOW IMAGES -->
+    <div class="modal-text mt-4">
       <h3 id="modal-title"></h3>
       <p id="modal-description"></p>
-      <div class="modal-meta" id="modal-meta"></div>
+      <div id="modal-meta" class="modal-meta"></div>
     </div>
-  </div>
-</div>
 
-  <!-- FOOTER -->
-  <div id="footer-placeholder"></div>
-
-<!-- ============================= -->
-<!-- PROJECT MODAL -->
-<!-- ============================= -->
-<div id="project-modal" class="project-modal">
-  <div class="modal-content">
-    <span class="modal-close" aria-label="Close project view">&times;</span>
-
-    <img id="modal-image" src="" alt="Project preview">
-
-    <div class="modal-text mt-3">
-      <h3 id="modal-title"></h3>
-      <p id="modal-description"></p>
-      <div class="modal-meta" id="modal-meta"></div>
-    </div>
   </div>
 </div>
 
