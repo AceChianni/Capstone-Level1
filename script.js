@@ -84,25 +84,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalClose = document.querySelector(".modal-close");
 
   const projects = [
-    {
-      title: "AnniiMe Finder",
-      img: "images/anniime-thumb.jpg",
-      desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
-      meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration"
-    },
-    {
-      title: "Inkspresso — Fuel Your Imagination",
-      img: "images/inkspresso-thumb.jpg",
-      desc: "A full-stack eCommerce concept that merges creativity, books, and brews. Features include a product catalog for coffee and tea, a book API integration, and dark mode accessibility.",
-      meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility"
-    },
-    {
-      title: "Inkspression",
-      img: "images/inkspression-thumb.jpg",
-      desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
-      meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design"
-    }
-  ];
+  {
+    title: "AnniiMe Finder",
+    img: "images/anniime/home-light.jpg", 
+    desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
+    meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
+    images: [
+      "images/anniime/home-light.jpg",
+      "images/anniime/home-dark.jpg",
+      "images/anniime/search-light.jpg",
+      "images/anniime/search-dark.jpg",
+      "images/anniime/quiz-dark.jpg",
+      "images/anniime/contact-light.jpg",
+      "images/anniime/contact-dark.jpg"
+    ]
+  },
+
+  {
+    title: "Inkspresso — Fuel Your Imagination",
+    img: "images/inkspresso/dashboard.png",
+    desc: "A full-stack eCommerce concept merging creativity, books, and brews. Features include a product catalog, book API integration, and dark mode accessibility.",
+    meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
+    images: [
+      "images/inkspresso/dashboard.png",
+      "images/inkspresso/home.png",
+      "images/inkspresso/library.png"
+    ]
+  },
+
+  {
+    title: "Inkspression",
+    img: "images/inkspression/dashboard.jpg",
+    desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
+    meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
+    images: [
+      "images/inkspression/dashboard.jpg",
+      "images/inkspression/theme.jpg",
+      "images/inkspression/entry.jpg"
+    ]
+  }
+];
+
 
   document.querySelectorAll(".btn-web").forEach((btn, i) => {
     btn.addEventListener("click", (e) => {
