@@ -1,36 +1,44 @@
 // script.js
 document.addEventListener("DOMContentLoaded", () => {
-  /* =====================================================
-     LOAD NAVBAR & FOOTER
-  ===================================================== */
-  const navbarPlaceholder = document.getElementById("navbar-placeholder");
-  if (navbarPlaceholder) {
-    fetch("navbar.html")
-      .then((res) => res.text())
-      .then((html) => {
-        navbarPlaceholder.innerHTML = html;
+// ============================
+// LOAD NAVBAR + ACTIVE STATE
+// ============================
+const navbarPlaceholder = document.getElementById("navbar-placeholder");
 
-        // Highlight active link
-        const currentPage =
-          window.location.pathname.split("/").pop() || "index.html";
-        document.querySelectorAll(".nav-link").forEach((link) => {
-          if (link.getAttribute("href") === currentPage) {
-            link.classList.add("active");
-          }
-        });
-      })
-      .catch((err) => console.error("Error loading navbar:", err));
-  }
+if (navbarPlaceholder) {
+  fetch("navbar.html")
+    .then(res => res.text())
+    .then(html => {
+      navbarPlaceholder.innerHTML = html;
 
-  const footerPlaceholder = document.getElementById("footer-placeholder");
-  if (footerPlaceholder) {
-    fetch("footer.html")
-      .then((res) => res.text())
-      .then((html) => {
-        footerPlaceholder.innerHTML = html;
-      })
-      .catch((err) => console.error("Error loading footer:", err));
-  }
+      const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+      document.querySelectorAll(".nav-link").forEach(link => {
+        const linkHref = link.getAttribute("href");
+
+        if (linkHref === currentPage) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    })
+    .catch(err => console.error("Navbar load failed:", err));
+}
+
+// ============================
+// LOAD FOOTER
+// ============================
+const footerPlaceholder = document.getElementById("footer-placeholder");
+
+if (footerPlaceholder) {
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(html => {
+      footerPlaceholder.innerHTML = html;
+    })
+    .catch(err => console.error("Footer load failed:", err));
+}
 
   /* =====================================================
      FADE-IN ANIMATION ON SCROLL
@@ -47,103 +55,261 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // trigger once on load
+  revealOnScroll();
 
   /* =====================================================
-     CAROUSEL PLAY/PAUSE CONTROLS (for index.html)
+     HERO CAROUSEL PLAY/PAUSE
   ===================================================== */
   const carouselElement = document.querySelector("#carouselNav");
   const pauseBtn = document.querySelector("#pauseCarousel");
   const playBtn = document.querySelector("#playCarousel");
 
-  if (carouselElement && pauseBtn && playBtn) {
-    const carousel = new bootstrap.Carousel(carouselElement, { interval: 4000 });
+  if (carouselElement && pauseBtn && playBtn && window.bootstrap) {
+    const heroCarousel = new bootstrap.Carousel(carouselElement, {
+      interval: 4000,
+    });
 
     pauseBtn.addEventListener("click", () => {
-      carousel.pause();
+      heroCarousel.pause();
       pauseBtn.classList.add("active");
       playBtn.classList.remove("active");
     });
 
     playBtn.addEventListener("click", () => {
-      carousel.cycle();
+      heroCarousel.cycle();
       playBtn.classList.add("active");
       pauseBtn.classList.remove("active");
     });
   }
-});
 
-// ------------------------------
-// Project Modal Logic
-// ------------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const modal = document.getElementById("project-modal");
-  const modalImg = document.getElementById("modal-image");
-  const modalTitle = document.getElementById("modal-title");
-  const modalDesc = document.getElementById("modal-description");
-  const modalMeta = document.getElementById("modal-meta");
-  const modalClose = document.querySelector(".modal-close");
+  /* =====================================================
+     LIGHTBOX FOR PHOTOSHOP / ART
+  ===================================================== */
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
 
-  const projects = [
-  {
-    title: "AnniiMe Finder",
-    img: "images/anniime/home-light.jpg", 
-    desc: "A front-end anime discovery app built using React and an open Anime API. It provides a clean, responsive interface where users can explore shows, view ratings, and build watchlists.",
-    meta: "Tools: React, JavaScript, REST API · Focus: UI Design, API Integration",
-    images: [
-      "images/anniime/home-light.jpg",
-      "images/anniime/home-dark.jpg",
-      "images/anniime/search-light.jpg",
-      "images/anniime/search-dark.jpg",
-      "images/anniime/quiz-dark.jpg",
-      "images/anniime/contact-light.jpg",
-      "images/anniime/contact-dark.jpg"
-    ]
-  },
-
-  {
-    title: "Inkspresso — Fuel Your Imagination",
-    img: "images/inkspresso/dashboard.png",
-    desc: "A full-stack eCommerce concept merging creativity, books, and brews. Features include a product catalog, book API integration, and dark mode accessibility.",
-    meta: "Tools: Node.js, Express, MongoDB · Focus: Full-Stack Architecture, Accessibility",
-    images: [
-      "images/inkspresso/dashboard.png",
-      "images/inkspresso/home.png",
-      "images/inkspresso/library.png"
-    ]
-  },
-
-  {
-    title: "Inkspression",
-    img: "images/inkspression/dashboard.jpg",
-    desc: "A journaling and productivity web app designed for neurodivergent users. Combines psychology and UI/UX design to create a calming, customizable space for reflection.",
-    meta: "Tools: React, Tailwind, Firebase · Focus: UX Research, Mental Wellness Design",
-    images: [
-      "images/inkspression/dashboard.jpg",
-      "images/inkspression/theme.jpg",
-      "images/inkspression/entry.jpg"
-    ]
-  }
-];
-
-
-  document.querySelectorAll(".btn-web").forEach((btn, i) => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      const project = projects[i];
-      modalImg.src = project.img;
-      modalTitle.textContent = project.title;
-      modalDesc.textContent = project.desc;
-      modalMeta.textContent = project.meta;
-      modal.style.display = "flex";
+  if (lightbox && lightboxImg) {
+    document.querySelectorAll(".case-image img, .thumb-img").forEach((img) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
     });
-  });
 
-  modalClose.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+      lightboxImg.src = "";
+    });
+  }
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
+  /* =====================================================
+     WEB PROJECT CASE STUDY MODAL + CAROUSEL
+  ===================================================== */
+  const projectModal = document.getElementById("project-modal");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const modalMeta = document.getElementById("modal-meta");
+  const slideCaption = document.getElementById("slide-caption");
+  const modalClose = projectModal ? projectModal.querySelector(".modal-close") : null;
+
+  const carouselElementProjects = document.getElementById("projectCarousel");
+  const carouselInner = document.getElementById("project-carousel-inner");
+  const indicators = document.getElementById("project-carousel-indicators");
+
+  if (
+    projectModal &&
+    modalTitle &&
+    modalDescription &&
+    modalMeta &&
+    slideCaption &&
+    carouselElementProjects &&
+    carouselInner &&
+    indicators
+  ) {
+    const projects = {
+      anniime: {
+        title: "AnniiMe Finder",
+        overview:
+          "An anime discovery experience designed to gently onboard new viewers through a short quiz, curated recommendations, and mood-based navigation.",
+        meta:
+          "Role: Product Designer & Front-End Developer · Stack: React, JavaScript, Jikan API",
+        slides: [
+          {
+            src: "images/anniime/home-light.jpg",
+            heading: "Landing — Light Mode",
+            caption:
+              "A welcoming, low-stimulation entry point to reduce decision fatigue.",
+          },
+          {
+            src: "images/anniime/home-dark.jpg",
+            heading: "Landing — Dark Mode",
+            caption:
+              "Optimized contrast and legibility for nighttime browsing.",
+          },
+          {
+            src: "images/anniime/search-light.jpg",
+            heading: "Search Results — Light Mode",
+            caption:
+              "Key metadata surfaced to help new viewers choose with confidence.",
+          },
+          {
+            src: "images/anniime/search-dark.jpg",
+            heading: "Search Results — Dark Mode",
+            caption: "Parallel layout optimized for dark viewing environments.",
+          },
+          {
+            src: "images/anniime/quiz-dark.jpg",
+            heading: "Onboarding Quiz",
+            caption:
+              "Guides users through tone, vibe, and pacing to recommend matching anime.",
+          },
+        ],
+      },
+
+      inkspresso: {
+        title: "Inkspresso — Fuel Your Imagination",
+        overview:
+          "A cozy café-inspired full-stack eCommerce and book exploration experience.",
+        meta:
+          "Role: UX/UI Designer & Full-Stack Developer · Stack: Node.js, Express, MongoDB",
+        slides: [
+          {
+            src: "images/inkspresso/dashboard.png",
+            heading: "Dashboard Overview",
+            caption:
+              "Central hub connecting library, café menu, and curated recommendations.",
+          },
+          {
+            src: "images/inkspresso/home.png",
+            heading: "Café Menu",
+            caption: "Coffee-shop inspired browsing of drinks & treats.",
+          },
+          {
+            src: "images/inkspresso/library.png",
+            heading: "Library View",
+            caption: "Explore books, filter genres, and save favorite reads.",
+          },
+        ],
+      },
+
+      inkspression: {
+        title: "Inkspression",
+        overview:
+          "A neurodivergent-friendly journaling and self-reflection platform.",
+        meta:
+          "Role: Product Designer & Front-End Developer · Stack: React, Tailwind, Firebase",
+        slides: [
+          {
+            src: "images/inkspression/dashboard.jpg",
+            heading: "Dashboard",
+            caption: "Gentle overview of mood, prompts, and recent entries.",
+          },
+          {
+            src: "images/inkspression/theme.jpg",
+            heading: "Theme Selection",
+            caption:
+              "Sensory-friendly interface themes designed for comfort & clarity.",
+          },
+          {
+            src: "images/inkspression/entry.jpg",
+            heading: "Entry Screen",
+            caption: "A focused writing space for expressive journaling.",
+          },
+        ],
+      },
+    };
+
+    /* -----------------------------
+       VIEW CASE STUDY BUTTONS
+    ----------------------------- */
+    document.querySelectorAll(".btn-web[data-project]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const key = btn.dataset.project;
+        const project = projects[key];
+        if (!project) return;
+
+        modalTitle.textContent = project.title;
+        modalDescription.textContent = project.overview;
+        modalMeta.textContent = project.meta;
+
+        carouselInner.innerHTML = "";
+        indicators.innerHTML = "";
+
+        project.slides.forEach((slide, index) => {
+          const item = document.createElement("div");
+          item.className = "carousel-item" + (index === 0 ? " active" : "");
+          item.innerHTML = `
+            <img src="${slide.src}" class="d-block w-100 modal-slide-img" alt="${slide.heading}">
+            <div class="carousel-caption d-md-block">
+              <h5>${slide.heading}</h5>
+              <p>${slide.caption}</p>
+            </div>
+          `;
+          carouselInner.appendChild(item);
+
+          const indicator = document.createElement("button");
+          indicator.type = "button";
+          indicator.dataset.bsTarget = "#projectCarousel";
+          indicator.dataset.bsSlideTo = index;
+          if (index === 0) indicator.classList.add("active");
+          indicators.appendChild(indicator);
+        });
+
+        let projCarousel = bootstrap.Carousel.getInstance(carouselElementProjects);
+        if (projCarousel) {
+          projCarousel.to(0);
+        } else {
+          projCarousel = new bootstrap.Carousel(carouselElementProjects, {
+            interval: false,
+            ride: false,
+            keyboard: true,
+          });
+        }
+
+        slideCaption.textContent = project.slides[0].caption;
+
+        carouselElementProjects.addEventListener("slid.bs.carousel", (ev) => {
+          slideCaption.textContent = project.slides[ev.to].caption;
+        });
+
+        projectModal.classList.add("active");
+        projectModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        setTimeout(() => {
+          carouselElementProjects.setAttribute("tabindex", "0");
+          carouselElementProjects.focus();
+        }, 50);
+      });
+    });
+
+    /* -----------------------------
+       MODAL CLOSE
+    ----------------------------- */
+    if (modalClose) {
+      modalClose.addEventListener("click", () => {
+        projectModal.classList.remove("active");
+        projectModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      });
+    }
+
+    projectModal.addEventListener("click", (e) => {
+      if (e.target === projectModal) {
+        projectModal.classList.remove("active");
+        projectModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && projectModal.classList.contains("active")) {
+        projectModal.classList.remove("active");
+        projectModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+    });
+  }
 });

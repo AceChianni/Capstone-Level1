@@ -4,124 +4,142 @@
 
 /* Carousel container */
 .carousel {
-  max-width: 900px;
-  margin: 3rem auto;
-  border-radius: 1rem;
+  max-width: 960px;
+  margin: 3.5rem auto;
+  border-radius: 1.2rem;
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  position: relative;
 }
 
 /* Carousel images */
 .carousel img {
   width: 100%;
-  height: 500px;
+  height: 520px;
   object-fit: cover;
+  filter: saturate(1.05) contrast(1.03);
 }
 
-/* Caption text (glass effect background) */
+/* Caption container (glass morphism) */
 .carousel-caption {
-  background: rgba(90, 123, 191, 0.45); /* brand blue glass */
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-radius: 12px;
-  padding: 1.2rem 1.5rem;
+  background: rgba(60, 90, 180, 0.38);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 1.3rem 1.6rem;
   font-family: 'Inter', sans-serif;
-  color: var(--text-light);
+  color: #f8fbff;
   line-height: 1.6;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  transition: background 0.3s ease-in-out, transform 0.4s ease;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+  transition: all 0.4s ease;
 }
 
+/* Subtle hover lift */
 .carousel-caption:hover {
-  background: rgba(90, 123, 191, 0.55);
-  transform: scale(1.02);
+  background: rgba(60, 90, 180, 0.5);
+  transform: translateY(-4px);
 }
 
+/* Caption title */
 .carousel-caption h5 {
   font-family: 'Caveat', cursive;
   font-weight: 700;
-  font-size: 1.8rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
 }
 
+/* Caption text */
 .carousel-caption p {
   font-weight: 400;
-  font-size: 0.95rem;
-  color: #f8f9ff;
+  font-size: 1rem;
+  color: #eaf3ff;
 }
 
-/* Smooth transitions between slides */
+/* Smooth fade effect */
 .carousel-item {
-  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+  transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Navigation controls (arrows) */
+/* Arrow icons */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  filter: invert(100%) brightness(95%);
+  filter: invert(100%) brightness(110%);
 }
 
 /* =====================================================
-   PAUSE / PLAY BUTTONS
+   PAUSE / PLAY BUTTONS — refined
    ===================================================== */
 .carousel-controls {
   text-align: center;
+  margin-top: 1rem;
 }
 
+/* Shared button style */
 #pauseCarousel,
 #playCarousel {
   font-weight: 600;
   letter-spacing: 0.4px;
   border: 2px solid #5A7BBF;
-  padding: 0.35rem 0.9rem; /* smaller padding */
-  border-radius: 6px;
-  margin: 0 0.4rem;
-  font-size: 0.85rem; /* reduced font size */
-  transition: all 0.3s ease;
+  padding: 0.45rem 1.2rem;
+  border-radius: 20px;
+  margin: 0 0.5rem;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
 }
 
-/* Default states */
+/* Default */
 #pauseCarousel {
-  background-color: #ffffff;
+  background: #ffffff;
   color: #5A7BBF;
 }
 
 #playCarousel {
-  background-color: #5A7BBF;
+  background: #5A7BBF;
   color: #ffffff;
 }
 
-/* Active states */
+/* Active state */
 #pauseCarousel.active,
-#pauseCarousel:focus {
-  background-color: #5A7BBF;
-  color: #ffffff;
-  box-shadow: 0 0 6px rgba(90, 123, 191, 0.4);
+#playCarousel.active {
+  background: linear-gradient(135deg, #5A7BBF, #8FA7E5);
+  color: white;
+  box-shadow: 0 4px 12px rgba(90, 123, 191, 0.4);
 }
 
-#playCarousel.active,
-#playCarousel:focus {
-  background-color: #ffffff;
-  color: #5A7BBF;
-  box-shadow: 0 0 6px rgba(90, 123, 191, 0.4);
-}
-
-/* Hover feedback */
+/* Hover */
 #pauseCarousel:hover,
 #playCarousel:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(90, 123, 191, 0.35);
 }
 
-/* Responsive behavior */
+/* =====================================================
+   MOBILE OPTIMIZATION
+   ===================================================== */
 @media (max-width: 768px) {
   .carousel img {
-    height: 320px;
+    height: 340px;
   }
 
   .carousel-caption {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-    background: rgba(90, 123, 191, 0.6); /* less transparent for smaller screens */
+    font-size: 0.92rem;
+    padding: 1rem;
+    background: rgba(60, 90, 180, 0.6);
+  }
+
+  .carousel-caption h5 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .carousel img {
+    height: 260px;
+  }
+
+  .carousel-caption {
+    padding: 0.8rem;
   }
 }
